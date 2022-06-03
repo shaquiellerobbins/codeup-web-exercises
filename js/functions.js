@@ -99,9 +99,9 @@ function calculateTip(tipAmount, billTotal){
  * then display the dollar amount they should tip
  */
 alert("Thank you for dining in - let's see what you bill is and how much you wan to tip!")
-let totalAmount = prompt(message: "How much is you bill today?");
+let totalAmount = prompt(message: "How much is you bill today?")
 
-let tipAsDecimal = prompt (message:"How much you like to tip $?" + totalAmount +"?");
+let tipAsDecimal = prompt (message:"How much you like to tip $?" + totalAmount +"?")
 
 alert("I have calculated that you will tip $" + calculateTip(tipAsDecimal, totalAmount))
 /**
@@ -120,3 +120,7 @@ alert("I have calculated that you will tip $" + calculateTip(tipAsDecimal, total
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
+function ApplyDiscount(price, discountAsDeci){
+
+    return originalPrice - calculateTip(discountAsDeci, originalPrice);
+}

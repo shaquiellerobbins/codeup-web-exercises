@@ -22,7 +22,7 @@
  * console.logging the function's return value
  */
 
-let color = prompt("Pick a random color.")
+let randomColor = prompt("Pick a random color.")
 function analyzeColor(color) {
     if (color === "blue") {
         return "Blue is the color of the sky.";
@@ -31,15 +31,14 @@ function analyzeColor(color) {
     } else if (color === "green") {
         return "I like green.";
     } else {
-        return "I don't know much about that" + color + " before.";
+        return "I don't know much about that" + color + ".";
     }
 }
 
 analyzeColor();
-
-//console.log(analyzeColor("red"));
-//console.log(analyzeColor("green"));
-//console.log(analyzeColor("vermillion"));
+console.log(analyzeColor("red"));
+console.log(analyzeColor("green"));
+console.log(analyzeColor("vermillion"));
 
 
 
@@ -56,10 +55,26 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message every time you refresh the page
  */
 
+console.log(analyzeColor(randomColor));
+
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
+
+function analyzeColorSwitch(color) {
+    switch (color) {
+        case "blue":
+            return "Blue is the color of the sky.";
+        case "red":
+            return "Red is the color of strawberries.";
+        case "green":
+            return "I like green.";
+        default:
+            return "I don't know much about that" + color + ".";
+    }
+}
+
 
 /**
  * TODO:

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM: Query and Modify</title>
+</head>
+<body>
+
+<h1 id="main-header">Hello World!</h1> <button type="button" id="button-one"> Header Button!</button>
+<ul>
+    <li data-dbid="1">Item 1</li>
+    <li data-dbid="2">Item 2</li>
+    <li data-dbid="3">Item 3</li>
+    <li data-dbid="4">Item 4</li>
+    <li data-dbid="5">Item 5</li>
+</ul>
+<button type="button" id="button-two"> Plain Button!</button>
+<h2 id="sub-header">Hello Again.<button type="button" id="button-three"> Sub-Header Button!</button></h2>
+
+<p class="sub-paragraph">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+
+</p>
+<button type="button" id="button-four"> Paragraph Button!</button>
+
+<script>
+    (function() {
+        "use strict";
+        // TODO: Uncomment next line and get the main header element by id
+        var mainHeader = document.getElementById("main-header") ;
+        console.log(mainHeader)
+
+        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        mainHeader.innerHTML= "JavaScript is Cool"
+
+
+        // TODO: Uncomment the next line and get the sub header element by id
+        var subHeader = document.getElementById("sub-header");
+        console.log(subHeader);
+
+        // TODO: Set the text color of subHeader to blue
+        subHeader.style.color = "blue";
+
+        // TODO: Uncomment the next line and get all list items
+        var listItems = document.getElementsByTagName("li");
+        console.log(listItems);
+
+        // TODO: Set text color on every other list item to grey
+        for (var i = 0; i < listItems.length; i++) {
+            if (i % 2) {
+                listItems[i].setAttribute("style", "color: grey");
+            }
+        }
+
+        // TODO: Set text color of li with dbid = 1 to blue
+        console.log(listItems[0].getAttribute("data-dbid"));
+
+        for (var i=0; i < listItems.length; i++) {
+            if (listItems[i].getAttribute('data-dbid')=="1") {
+                listItems[i].style.color="blue"
+            }
+        }
+
+        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+        console.log(subParagraphs);
+
+        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        subParagraphs[0].innerText = "Mission Accomplished!!!!"
+
+        //click/alert event
+        var listenerOne= function (event) {
+            alert ("You clicked the header button!!!")
+        }
+        document.getElementById("button-one").addEventListener('click', listenerOne);
+
+        //change btn background click event
+        var listenerTwo = function (event) {
+            return document.getElementById("button-two").style.backgroundColor= "green";
+
+        }
+        document.getElementById("button-two").addEventListener('click', listenerTwo);
+
+////switch background btw red and blue colors with click event
+
+        var buttonThree = document.getElementById("button-three");
+
+        buttonThree.addEventListener("click", function() {
+            const curColour = document.body.style.backgroundColor;
+
+            if (curColour === 'green') {
+                document.body.style.backgroundColor = "yellow";
+            }
+            else {
+                document.body.style.backgroundColor = "green";
+            }
+        });
+
+        //switch button colors on click event
+        var buttonFour = document.getElementById("button-four");
+
+        buttonFour.addEventListener("click", function() {
+            const btColour = document.getElementById("button-four").style.backgroundColor;
+
+            if (btColour === 'blue') {
+                document.getElementById("button-four").style.backgroundColor = "red";
+            }
+            else {
+                document.getElementById("button-four").style.backgroundColor = "blue";
+            }
+        });
+
+
+
+    })();
+
+
+</script>
+</body>
+</html>

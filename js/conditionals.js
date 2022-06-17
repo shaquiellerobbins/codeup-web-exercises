@@ -21,27 +21,21 @@
  * Test your function by passing various string literals to it and
  * console.logging the function's return value
  */
-
-let randomColor = prompt("Pick a random color.")
-function analyzeColor(color) {
-    if (color === "blue") {
-        return "Blue is the color of the sky.";
-    } else if (color === "red") {
-        return "Strawberries are red.";
-    } else if (color === "green") {
-        return "I like green.";
+/**
+ function analyzeColor(input) {
+    if (input === "blue") {
+        return("Blue is the color of the sky");
+    } else if (input === "red") {
+        return("Red is the color of apples")
+    } else if (input === "green") {
+        return("Green is the color of grass")
+    } else if (input === "yellow") {
+        return("Yellow is the color of bananas")
     } else {
-        return "I don't know much about that" + color + ".";
+        return("I dont have anything about " + input + " in my database :(")
     }
 }
-
-analyzeColor();
-console.log(analyzeColor("red"));
-console.log(analyzeColor("green"));
-console.log(analyzeColor("vermillion"));
-
-
-
+ */
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
@@ -54,28 +48,33 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
  * You should see a different message every time you refresh the page
  */
-
-console.log(analyzeColor(randomColor));
-
+//let random = analyzeColor(randomColor)
+//console.log(random)
 /**
  * TODO:
  * Comment out the code above, and refactor your function to use a switch-case statement
  */
-
-function analyzeColorSwitch(color) {
+let color = prompt("What is your favorite color?");
+function analyzeColor(color) {
     switch (color) {
         case "blue":
-            return "Blue is the color of the sky.";
+            alert("Blue is the color of the sky");
+            break;
         case "red":
-            return "Red is the color of strawberries.";
+            alert("Red is the color of apples");
+            break;
         case "green":
-            return "I like green.";
+            alert("Green is the color of grass");
+            break;
+        case "yellow":
+            alert("Yellow is the color of bananas");
+            break;
         default:
-            return "I don't know much about that" + color + ".";
+            alert("I do not have the color " + color + " in my database")
+            break;
     }
 }
-
-
+analyzeColor(color);
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
@@ -104,7 +103,31 @@ function analyzeColorSwitch(color) {
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
-
+let total = prompt("What is your total price?")
+// let number = prompt("What number did you pull?")
+function calculateTotal(number, total) {
+    switch(number){
+        case 0 :
+            alert("Sorry you pulled a 0 :(, no discount for you, your price is $" + total + "!");
+            break;
+        case 1 :
+            alert("Congratulations you pulled a 1, you get a discount of 10% off your total purchase! Your new total is $" + (total * .90) + "!");
+            break;
+        case 2 :
+            alert("You are one lucky customer you pulled a 2, you get a discount of 25% on your total at checkout. Your new price is $" + (total * .75) + "!");
+            break;
+        case 3 :
+            alert("Congatulations you pulled a 3, you will get a discount of 35% at checkout. Your new total is $" + (total * .65) + "!");
+            break;
+        case 4 :
+            alert("Congrats you pulled a 4 and won 50% off of your purchase. Your new total is $" + (total * .5) + "!");
+            break;
+        case 5 :
+            alert("WINNER, WINNER, CHICKEN DINNER! You pulled a 5 and won 100% off of your purchase, your price at checkout will be $" + 0 + "!!!!");
+            break;
+    }
+}
+//calculateTotal(number, total)
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -114,8 +137,8 @@ function analyzeColorSwitch(color) {
  * price before the discount was, and what their price after the discount is.
  */
 // Generate a random number between 0 and 6
-// var luckyNumber = Math.floor(Math.random() * 6);
-
+var luckyNumber = Math.floor(Math.random() * 6);
+calculateTotal(luckyNumber, total)
 /**
  * TODO:
  * Write some JavaScript that uses a `confirm` dialog to ask the user if they
@@ -134,3 +157,46 @@ function analyzeColorSwitch(color) {
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+/**let question = confirm("Would you like to enter a number?")
+ if (question = true)
+ let answer = prompt("What is the number you would like to enter.")
+ 1) alert ("It is " + (answer % 2 === 0) + "that your number is even.")
+ 2) alert ("Your number plus 100 is " + (answer + 100) + ".")
+ 3)  alert ("Your number is " + (Math.sign(answer)) + ".")
+ */
+function numberPick() {
+    let question = confirm("Would you like to enter a number?");
+    if(question === true) {
+        let answer = prompt("What number would you like to enter");
+        test(answer);
+        console.log(answer);
+        function test(x) {
+            console.log(answer);
+            isOdd(answer);
+            function isOdd(x) {
+                if (answer % 2 === 0) {
+                    alert("The number " + answer + " is Even.");
+                } else {
+                    alert("The number " + answer + " is Odd.");
+                }
+            }
+            addHundred(answer);
+            function addHundred(x) {
+                alert("Your number plus 100 is " + (parseFloat(answer) + 100));
+            }
+            positveOrNegative(answer);
+            function positveOrNegative(x) {
+                if (answer > 0) {
+                    alert("The number you chose is positive.");
+                } else if (answer < 0) {
+                    alert("The number you chose is negative");
+                } else {
+                    alert("The number you chose is zero.");
+                }
+            }
+        }
+    } else{
+        alert("Please refresh the page and enter a number?")
+    }
+}
+numberPick()

@@ -7,8 +7,10 @@
   <title>Order Pizza</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/order-pizza.css">
+  <link rel="stylesheet" href="../css/custom.css">
+
 </head>
+
 <body>
 
 <!--NAVBAR -->
@@ -48,10 +50,11 @@
 
   <!--JUMBOTRON-->
 
-  <div class="jumbotron jumbotron-fluid mt-5 d-none d-sm-block">
-    <div class="welcome">
-      <h1 class="display-4">Welcome to Pizza World!</h1>
-    </div>
+  <div class="docrob-tron"  style="background-image:
+      url(../images/pizza.png);  background-size: cover">
+        <h2 class="pt-3 pb-3 text-center w-100" style="background-color: rgba(255,255,255,0.8);
+            ">Welcome to Pizza World!
+        </h2>
   </div>
 
   <!--NAVTABS-->
@@ -143,11 +146,13 @@
           </div>
           <div class="card-body">
             <p class="card-text">How Much?</p>
-            <select class="how-much-cheese">
-              <option value="light">Light</option>
-              <option value="regular" selected>Regular</option>
-              <option value="extra">Extra</option>
-            </select>
+            <label>
+              <select class="how-much-cheese">
+                <option value="light">Light</option>
+                <option value="regular" selected>Regular</option>
+                <option value="extra">Extra</option>
+              </select>
+            </label>
           </div>
         </div>
         <div class="card">
@@ -157,19 +162,23 @@
           <div class="card-body">
             <div class="sauce-type">
               <p class="card-text">What type?</p>
-              <select class="what-type">
-                <option value="alfredo">Alfredo - White</option>
-                <option value="tomato" selected>Robust Inspired Tomato Sauce</option>
-                <option value="spicy">Spicy</option>
-              </select>
+              <label>
+                <select class="what-type">
+                  <option value="alfredo">Alfredo - White</option>
+                  <option value="tomato" selected>Robust Inspired Tomato Sauce</option>
+                  <option value="spicy">Spicy</option>
+                </select>
+              </label>
             </div>
             <div class="how-much-sauce mt-3">
               <p>How much?</p>
-              <select class="how-much-sauce">
-                <option value="light-sauce">Light</option>
-                <option value="reg-sauce" selected>Regular</option>
-                <option value="extra-sauce">Extra</option>
-              </select>
+              <label>
+                <select class="how-much-sauce">
+                  <option value="light-sauce">Light</option>
+                  <option value="reg-sauce" selected>Regular</option>
+                  <option value="extra-sauce">Extra</option>
+                </select>
+              </label>
             </div>
           </div>
         </div>

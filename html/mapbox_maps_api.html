@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox</title>
+    <!-- Mapbox CSS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='../js/keys.js'></script>
+
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+        .header{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+<h1 class="header">My First Mapbox Map!</h1>
+
+<button type="button"  id="zoom1">Zoom Out</button>
+<button type="button" id="zoom2">Zoom Reg</button>
+<button type="button" id="zoom3">Zoom In</button>
+
+</div>
+
+<div id='map'></div>
+<script>
+    mapboxgl.accessToken = mapBoxApiKey;
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.4916, 29.4252],
+        zoom: 10
+    });
+
+    map.on('load', () => {
+        map.addSource('places', {
+// This GeoJSON contains features that include an "icon"
+// property. The value of the "icon" property corresponds
+// to an image in the Mapbox Streets style's sprite.
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Makenka Hot Truck</strong>' +
+                                '<a href="https://www.makenka.com/" target="_blank">Our Website</a>' +
+                                '<p>2407 North Saint Mary’s St. San Antonio, Texas 78212</p>' +
+                                '<img src="../images/makenka.jpeg" alt="">',
+                            'icon': 'restaurant-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [29.425976201293075, -98.48845823808269]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Broadway Delicatessen</strong>  ' +
+                                '<a href="https://broadwaydelisa.com/" target="_blank">Our Website</a> ' +
+                                '<p>122 Broadway, San Antonio, TX 78205</p>' +
+                                '<img src="../images/broadway.jpeg" alt="">',
+                            'icon': 'restaurant-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [29.42811318633249, -98.48750978473642]
+                        }
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Wings Out</strong>' +
+                                '<a href="https://wingsout.com/" target="_blank">Our Website</a> ' +
+                                '<p>849 E Commerce St, San Antonio, TX 78205</p>' +
+                                '<img src="../images/wingsout.jpeg" alt="">',
+                            'icon': 'restaurant-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [29.42302771247253, -98.48461902698685]
+                        }
+                    }
+                ]
+            }
+        });
+
+        for (const marker of geojson.features) {
+
+            const el = document.createElement('div');
+            const width = marker.properties.iconSize[0];
+            const height = marker.properties.iconSize[1];
+            el.className = 'marker';
+            el.style.backgroundImage = `url(../images/200.gif/)`;
+            el.style.width = `${width}px`;
+            el.style.height = `${height}px`;
+            el.style.backgroundSize = '100%';
+
+            let marker = new mapboxgl.Marker(el);
+
+            el.addEventListener('click', () => {
+                window.alert(marker.properties.message);
+            });
+
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map);
+
+        }
+
+
+
+// Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}',
+                'icon-allow-overlap': true
+            }
+        });
+
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+        map.on('click', 'places', (e) => {
+// Copy coordinates array.
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = e.features[0].properties.description;
+
+// Ensure that if the map is zoomed out such that multiple
+// copies of the feature are visible, the popup appears
+// over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+// Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

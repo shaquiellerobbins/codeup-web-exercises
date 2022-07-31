@@ -1,0 +1,3 @@
+const mapBoxApiKey = 'pk.eyJ1IjoibWFkbWFyY29zIiwiYSI6ImNsNWw2NmE3bTAycDYzamxlcHJmbTlkZmsifQ.kk6xdSH-QyvWRydNya6Bww';
+const mapBoxWeatherKey = '6d219c5e959b52267c38028d2b118b43'
+const gitHubApiKey = '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'

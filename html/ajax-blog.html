@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="insertProducts"></div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>(function() {
+    "use strict";
+    // TODO: Create an AJAX GET request for the file under data/inventory.json
+    $.ajax("../data/blog.json").done(function (data) {
+        console.log(data);
+    });
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+    function addTool(){
+        var inventory = $.ajax("../DATA/blog.json");
+        inventory.done(function (data){
+            $.each(data, function (index, blog){
+                var input = "<div class=\"row\">";
+
+                input += "<div class=\"col\" >";
+                input += blog.title;
+                input += "</div>";
+
+                input += "<div class=\"col\">";
+                input += blog.content;
+                input += "</div>";
+
+                input += "<div class=\"col\">";
+                input += blog.categories;
+                input += "</div>";
+
+                input += "<div class=\"col\">";
+                input += blog.date;
+                input += "</div>";
+
+                input += "</div>";
+                $('#insertProducts').append(input);
+            });
+
+        });
+        inventory.fail(function (data){
+            console.log("unable to load");
+        });
+    }
+    addTool();
+    $('#refresh').click(function (){
+        $('#insertProducts').html('');
+        addTool();
+        console.log(addTool());
+    });
+})();</script>
+</body>
+</html>
